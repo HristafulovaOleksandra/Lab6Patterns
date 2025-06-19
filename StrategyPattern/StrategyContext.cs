@@ -20,9 +20,24 @@ namespace Lab7Patterns.StrategyPattern
             _strategy = strategy;
         }
 
-        public int ExecuteStrategy(List<int> data)
+        public int ExecuteAroundStrategy(List<int> data)
         {
-            return _strategy(data);
+            Console.WriteLine("-> Starting strategy...");
+
+            int result;
+
+            try
+            {
+                result = _strategy(data);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"!!! Error: {ex.Message}");
+                return -1;
+            }
+
+            Console.WriteLine("-> Execution completed successfully.");
+            return result;
         }
     }
 }
